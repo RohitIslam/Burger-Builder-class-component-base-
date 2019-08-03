@@ -97,9 +97,12 @@ class ContactData extends Component {
             { value: "cheapest", displayValue: "Cheapest" }
           ]
         },
-        value: ""
+        value: "fastest",
+        validation: {},
+        valid: true
       }
     },
+    formIsValid: false,
     loading: false
   };
 
@@ -133,6 +136,10 @@ class ContactData extends Component {
 
   checkValidity(value, rules) {
     let isValid = true;
+
+    if (!rules) {
+      return true;
+    }
 
     if (rules.required) {
       isValid = value.trim() !== "" && isValid; //trim() used for removing empty white space from the form field value
@@ -169,7 +176,13 @@ class ContactData extends Component {
 
     updatedOrderForm[inputIdentifier] = updatedFormElement;
 
-    this.setState({ orderForm: updatedOrderForm });
+    let formValidCheck = true;
+    for (let inputIdentifier in updatedOrderForm) {
+      formValidCheck =
+        updatedOrderForm[inputIdentifier].valid && formValidCheck;
+    }
+
+    this.setState({ orderForm: updatedOrderForm, formIsValid: formValidCheck });
   };
 
   render() {
@@ -195,7 +208,9 @@ class ContactData extends Component {
             changed={event => this.inputChangeHandler(event, formElement.id)}
           />
         ))}
-        <Button btnType="Success">Order Now</Button>
+        <Button btnType="Success" disabled={!this.state.formIsValid}>
+          Order Now
+        </Button>
       </form>
     );
 
