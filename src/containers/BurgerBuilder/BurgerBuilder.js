@@ -42,58 +42,8 @@ class BurgerBuilder extends Component {
         return sum + element;
       }, 0);
 
-    this.setState({
-      purchasable: sum > 0
-    });
+    return sum > 0;
   }
-
-  // addIngredientHandler = type => {
-  //   const oldCount = this.state.ingredients[type];
-  //   let updatedCount = oldCount + 1;
-
-  //   const updatedIngredients = {
-  //     ...this.state.ingredients
-  //   };
-
-  //   updatedIngredients[type] = updatedCount;
-
-  //   const priceAddition = INGREDIENT_PRICES[type];
-  //   const oldPrice = this.state.totalPrice;
-  //   const newPrice = oldPrice + priceAddition;
-
-  //   this.setState({
-  //     ingredients: updatedIngredients,
-  //     totalPrice: newPrice
-  //   });
-
-  //   this.udatePurchaseState(updatedIngredients);
-  // };
-
-  // removeIngredientHandler = type => {
-  //   const oldCount = this.state.ingredients[type];
-  //   let updatedCount = oldCount - 1;
-
-  //   if (oldCount <= 0) {
-  //     return;
-  //   }
-
-  //   const updatedIngredients = {
-  //     ...this.state.ingredients
-  //   };
-
-  //   updatedIngredients[type] = updatedCount;
-
-  //   const priceDeduction = INGREDIENT_PRICES[type];
-  //   const oldPrice = this.state.totalPrice;
-  //   const newPrice = oldPrice - priceDeduction;
-
-  //   this.setState({
-  //     ingredients: updatedIngredients,
-  //     totalPrice: newPrice
-  //   });
-
-  //   this.udatePurchaseState(updatedIngredients);
-  // };
 
   purchaseHandler = () => {
     this.setState({
@@ -152,7 +102,7 @@ class BurgerBuilder extends Component {
             disabled={disableInfo}
             price={this.props.price}
             ordered={this.purchaseHandler}
-            purchasable={this.state.purchasable}
+            purchasable={this.udatePurchaseState(this.props.ingredients)}
           />
         </Aux>
       );
