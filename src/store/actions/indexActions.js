@@ -4,4 +4,4 @@ export {
   initializeIngredients
 } from "./burgerBuilderAction";
 // export {} from './actionTypes'
-export { purchaseBurger, purchaseBurgerInit } from "./orderAction";
+export { purchaseBurger, purchaseBurgerInit, fetchOrder } from "./orderAction";
