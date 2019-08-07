@@ -5,3 +5,4 @@ export {
 } from "./burgerBuilderAction";
 // export {} from './actionTypes'
 export { purchaseBurger, purchaseBurgerInit, fetchOrder } from "./orderAction";
+export { auth } from "./authAction";
